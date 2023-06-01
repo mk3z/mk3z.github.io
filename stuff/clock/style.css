@@ -1,0 +1,66 @@
+@import "../../nord.css";
+
+@font-face {
+    font-family: "RobotoMono";
+    src: url("../fonts/RobotoMono-Regular.ttf");
+    font-display: swap
+}
+
+body {
+    font-family: "RobotoMono", monospace;
+    background-color: var(--nord0);
+}
+
+a {
+    display: inline-block;
+}
+
+button {
+    font-size: 1.2rem;
+    background-color: var(--nord0);
+    border: 2px solid;
+    border-color: var(--nord11);
+    border-radius: 2px;
+    width: 2rem;
+}
+
+button:hover {
+    background-color: var(--nord3);
+}
+
+#timedate {
+    font-size: 5rem;
+    text-align: center;
+    padding: 320px 20px;
+    color: var(--nord4);
+}
+
+#mi, #mis {
+    display: none;
+}
+
+.footer {
+    font-size: 1.5rem;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    text-align: center;
+    color: var(--nord3);
+}
+
+.colored {
+    text-decoration: none;
+    color: var(--nord11);
+}
+
+@media only screen and (max-width: 680px) {
+    #timedate {
+        font-size: 3rem;
+        padding-top: 200px;
+    }
+    .footer {
+        font-size: 1rem;
+    }
+}

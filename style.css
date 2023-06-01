@@ -1,0 +1,103 @@
+@import "nord.css";
+
+@font-face {
+    font-family: "RobotoMono";
+    src: url("fonts/RobotoMono-Regular.ttf");
+    font-display: swap
+}
+
+/* element specific ==========================================*/
+
+body {
+    font-family: "RobotoMono", monospace;
+    font-size: 1rem;
+    max-width: 50rem;
+    margin: auto;
+    padding: 28px 20px;
+    background-color: var(--nord0);
+    color: var(--nord4);
+}
+
+h1 {
+    margin-top: 0;
+    color: var(--nord11);
+    font-weight:normal; /* Disables bold headers */
+}
+
+a {
+    color: var(--nord9);
+}
+
+/* class/id specific ========================================*/
+
+#main {
+    padding-top: 100px;
+}
+
+#main p {
+    margin-bottom: 0;
+}
+
+#main a {
+    display: block;
+    text-decoration: none;
+    color: var(--nord4);
+}
+
+.item {
+    padding: 20px;
+    margin-bottom: 60px;
+    border-style: solid;
+    border-color: var(--nord3);
+}
+
+/* The top menu */
+.menu {
+    overflow: hidden;
+    padding-bottom: 20px;
+}
+
+.menu{display:flex;flex:1}.menu:after {
+    content: "";
+    background: repeating-linear-gradient(90deg, var(--nord11), var(--nord11) 4px, transparent 0, transparent 10px);
+    display: block;
+    width: 100%;
+    right: 10px
+}
+
+/* The navigation menu links */
+.menu a {
+    float: left;
+    text-align: center;
+    padding: 10px 10px;
+    margin-right: 6px;
+    text-decoration: none;
+    background-color: var(--nord11);
+    color: var(--nord0);
+}
+
+.menu a:hover {
+    color: var(--nord4);
+}
+
+.chapter {
+    padding-bottom: 60px;
+}
+
+.footer {
+    text-align: center;
+    color: var(--nord3);
+}
+
+/* extra functionality =======================================*/
+
+/* When you mouse over links, change their color */
+a:hover {
+    color: var(--nord10);
+}
+
+@media only screen and (orientation: portrait) {
+    .main {
+        padding-top: 60px;
+    }
+}

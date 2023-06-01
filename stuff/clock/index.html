@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>clock</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <meta name="Description" content="Javascript clock with ISO 8601 and milliseconds">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+    </head>
+
+    <body onLoad="initClock()">
+
+        <div id="timedate">
+            <div id="date">
+                <a id="hi">January</a><a id="mid">01</a><a id="low">01</a>
+            </div>
+            <a id="h">12</a>:<a id="m">00</a>:<a id="s">00</a><span id="mis">.</span><a id="mi">000</a>
+        </div>
+
+        <div class="footer">
+            Press <button onclick="toggleISO()" class="colored">i</button> to toggle ISO8601 mode
+            <br>
+            Press <button onclick="toggleMS()" class="colored">m</button> to toggle milliseconds
+        </div>
+
+        <script>
+Number.prototype.pad = function(n) {
+    for (var r = this.toString(); r.length < n; r = 0 + r);
+    return r;
+};
+
+var ISOEnabled = true;
+
+var MSEnabled = false;
+
+function toggleMS() {
+    if (MSEnabled) {
+        document.getElementById("mi").style.display = "none";
+        document.getElementById("mis").style.display = "none";
+    } else {
+        document.getElementById("mi").style.display = "inline";
+        document.getElementById("mis").style.display = "inline";
+    }
+    MSEnabled = !MSEnabled;
+}
+
+function toggleISO() {
+    ISOEnabled = !ISOEnabled;
+}
+
+document.addEventListener('keydown', (event) => {
+    if (event.key == 'm') {
+        toggleMS();
+    }
+});
+
+document.addEventListener('keydown', (event) => {
+    if (event.key == 'i') {
+        toggleISO();
+    }
+});
+
+function updateClock() {
+    var now = new Date();
+    var milli = now.getMilliseconds(),
+        sec = now.getSeconds(),
+        min = now.getMinutes(),
+        hou = now.getHours(),
+        mo = now.getMonth(),
+        dy = now.getDate(),
+        yr = now.getFullYear();
+
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var tags = ["hi", "mid", "low", "h", "m", "s", "mi"];
+
+    if (ISOEnabled) {
+        var corr = [yr + "-", "0".repeat((2-mo.toString().length)) + mo + "-", "0".repeat((2-dy.toString().length)) + dy, hou.pad(2), min.pad(2), sec.pad(2), "0".repeat((3-milli.toString().length)) + milli];
+    } else {
+        var corr = ["0".repeat((2-dy.toString().length)) + dy, ". " + months[mo], ", " + yr, hou.pad(2), min.pad(2), sec.pad(2), "0".repeat((3-milli.toString().length)) + milli];
+    }
+
+    for (var i = 0; i < tags.length; i++)
+        document.getElementById(tags[i]).firstChild.nodeValue = corr[i];
+}
+
+function initClock() {
+    updateClock();
+    window.setInterval("updateClock()", 1);
+}
+        </script>
+    </body>
+</html>

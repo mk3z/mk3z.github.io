@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>epoch</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <meta name="Description" content="Javascript UNIX epoch clock">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+    </head>
+
+    <body onLoad="initClock()">
+
+        <div id="timedate">
+            <a id="epoch">0000000000</a>
+        </div>
+
+        <script>
+Number.prototype.pad = function(n) {
+    for (var r = this.toString(); r.length < n; r = 0 + r);
+    return r;
+};
+
+function updateClock() {
+    var epoch = Math.round((new Date()).getTime() / 1000);
+
+    document.getElementById("epoch").firstChild.nodeValue = epoch;
+}
+
+function initClock() {
+    updateClock();
+    window.setInterval("updateClock()", 1);
+}
+        </script>
+    </body>
+</html>
