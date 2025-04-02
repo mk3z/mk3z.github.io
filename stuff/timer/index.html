@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown Timer</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 300;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #a3be8c;
+      transition: background-color 0.5s;
+    }
+
+    #timer {
+      font-size: 100px;
+      color: gray;
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+    }
+
+    #timer.center {
+      font-size: 200px;
+      color: black;
+      position: static;
+    }
+
+    #timer.end {
+      font-size: 200px;
+      color: white;
+    }
+
+    #start {
+      font-size: 200px;
+      color: white;
+      opacity: 1;
+      transition: opacity 1s;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    #start.fade {
+      opacity: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="start">START</div>
+  <div id="timer"></div>
+
+  <script>
+    const startElement = document.getElementById('start');
+    const timerElement = document.getElementById('timer');
+    const body = document.body;
+    let totalSeconds = 3 * 60;
+    let intervalId;
+
+    // Start the timer immediately and show it
+    updateTimer();
+    intervalId = setInterval(updateTimer, 1000);
+
+    // Start screen functionality
+    setTimeout(() => {
+      startElement.classList.add('fade');
+      setTimeout(() => {
+        startElement.style.display = 'none';
+        body.style.backgroundColor = 'white';
+      }, 1000); // Wait for fade to complete
+    }, 5000); // Show start screen for 5 seconds
+
+    function updateTimer() {
+      const minutes = Math.floor(totalSeconds / 60);
+      const seconds = totalSeconds % 60;
+      const displayTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+      if (totalSeconds <= 30) {
+        timerElement.classList.add('center');
+      }
+
+      if (totalSeconds === 0) {
+        timerElement.textContent = 'TIME IS UP';
+        timerElement.classList.add('end');
+        body.style.backgroundColor = '#bf616a';
+        clearInterval(intervalId);
+      } else {
+        timerElement.textContent = displayTime;
+        totalSeconds--;
+      }
+    }
+  </script>
+</body>
+
+</html>
