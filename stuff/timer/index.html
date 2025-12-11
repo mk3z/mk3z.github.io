@@ -66,18 +66,16 @@
     let totalSeconds = 3 * 60;
     let intervalId;
 
-    // Start the timer immediately and show it
     updateTimer();
     intervalId = setInterval(updateTimer, 1000);
 
-    // Start screen functionality
     setTimeout(() => {
       startElement.classList.add('fade');
       setTimeout(() => {
         startElement.style.display = 'none';
         body.style.backgroundColor = 'white';
-      }, 1000); // Wait for fade to complete
-    }, 5000); // Show start screen for 5 seconds
+      }, 1000);
+    }, 5000);
 
     function updateTimer() {
       const minutes = Math.floor(totalSeconds / 60);

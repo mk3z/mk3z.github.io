@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wingdings Translator</title>
+  <link rel="icon" type="image/x-icon" href="gaster.png">
+
+  <!-- Google Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Fonts: Noto Emoji (Monochrome) + Fallbacks -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@300..700&family=Noto+Sans+Symbols&family=Noto+Sans+Symbols+2&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="card-content center-align" style="background: #000;">
+        <span class="card-title center-align">WINGDINGS TRANSLATOR</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">NORMAL TEXT</span>
+            <div>
+              <button class="btn-header" onclick="copyNormal()" title="Copy">
+                <i class="material-icons">content_copy</i>
+              </button>
+            </div>
+          </div>
+          <div class="card-content">
+            <textarea id="normalText" class="normal-font" placeholder="Type here..."
+              oninput="textToWingdings()"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">WINGDINGS</span>
+            <div>
+              <button class="btn-header" onclick="copyWingdings()" title="Copy">
+                <i class="material-icons">content_copy</i>
+              </button>
+            </div>
+          </div>
+          <div class="card-content">
+            <textarea id="wingdingsText" class="wingdings-font" placeholder="❄︎⮹🞐♏︎ ♒︎♏︎❒♏︎📬📬📬"
+              oninput="wingdingsToText()"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-bar">
+      <button class="btn-clear-all" onclick="clearAll()">
+        <i class="material-icons">delete_sweep</i>
+        CLEAR ALL
+      </button>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">
+          <i class="material-icons">keyboard</i>
+          KEYBOARD
+        </span>
+      </div>
+      <div class="card-content" style="padding: 0;">
+        <div class="keyboard-wrapper" id="keyboard-container"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+
+  <script src="script.js" defer></script>
+</body>
+
+</html>
